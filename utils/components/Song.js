@@ -1,16 +1,19 @@
-import { SafeAreaView, Image, Text, StyleSheet, Dimensions } from "react-native";
+import { SafeAreaView, Image, Text, StyleSheet, Dimensions, TouchableHighlight } from "react-native";
 import { Themes } from "../../assets/Themes";
 import { millisToMinutesAndSeconds } from "../../utils"
-const Song = ({index, songTitle, albumName, songArtists, imageUrl, duration}) => {
-    let start = index + 1
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
+
+const Song = ({songTitle, albumName, songArtists, imageUrl, duration, previewUrl, externalUrl}) => {
+    const navigation = useNavigation(); 
     return (
     <SafeAreaView style={styles.container}>
-        <SafeAreaView style={styles.start}>
-            <Text style={styles.text}>{start}</Text>
-        </SafeAreaView>
-        <SafeAreaView styles={styles.imageBox}>
-            <Image style={styles.image} source={{uri:imageUrl}}/>
-        </SafeAreaView>
+        <Ionicons name="play-circle-sharp" size={32} color="green" 
+        onPress={() => navigation.navigate('DetailsScreen', { previewUrl })} />   
+        <TouchableHighlight onPress={() => navigation.navigate('PreviewScreen', { externalUrl })}>
+        <Image style={styles.image} source={{uri:imageUrl}}/>
+        </TouchableHighlight>         
         <SafeAreaView style={styles.songTitle}>
             <Text style={styles.text}>{songTitle}</Text>
             <Text style={styles.text}>{songArtists[0].name}</Text>

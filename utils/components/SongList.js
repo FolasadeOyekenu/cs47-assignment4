@@ -1,6 +1,7 @@
 import { FlatList, View } from "react-native";
 import  Song  from "./Song";
 const SongList = ({tracks}) => {
+    console.log(tracks);
     const renderSongItem = (item, index) => {
         return (
         <Song index = {index} 
@@ -8,7 +9,10 @@ const SongList = ({tracks}) => {
             albumName = {item.albumName} 
             songArtists = {item.songArtists}
             imageUrl = {item.imageUrl}
-            duration = {item.duration} />
+            duration = {item.duration} 
+            previewUrl = {item.previewUrl}
+            externalUrl = {item.externalUrl}
+            />
         )
     }
     return (
